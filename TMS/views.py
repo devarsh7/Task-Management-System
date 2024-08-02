@@ -1,8 +1,6 @@
-# views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 from .models import Task, Notification, Message
 from django.contrib.auth.models import User
 
@@ -24,8 +22,10 @@ def dashboard(request):
         'messages': messages,
     }
     return render(request, 'dashboard.html', context)
+
+@login_required
 def mark_notification_as_read(request, pk):
-    notification = Notification.objects.get(pk=pk)
+    notification = get_object_or_404(Notification, pk=pk)
     notification.is_read = True
     notification.save()
     return redirect('dashboard')
@@ -36,16 +36,13 @@ class TaskListView(ListView):
     context_object_name = 'tasks'
 
 def projects(request):
-    # Add any context you need to pass to the template
     context = {}
     return render(request, 'projects.html', context)
 
 def users(request):
-    # Add any context you need for the users page
     context = {}
     return render(request, 'users.html', context)
 
 def reports(request):
-    # Add any context you need for the reports page
     context = {}
     return render(request, 'reports.html', context)
