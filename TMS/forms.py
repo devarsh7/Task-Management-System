@@ -1,5 +1,16 @@
+from .models import Task, Message, User
 from django import forms
-from .models import Task, Message
+#from .models import Profile
+
+# class ProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['username', 'email']
+#
+# class ThemeForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields = ['theme']
 
 class TaskForm(forms.ModelForm):
     class Meta:

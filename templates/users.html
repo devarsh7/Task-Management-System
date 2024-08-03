@@ -1,13 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
-    <!-- Include CSS and JavaScript as needed -->
-</head>
-<body>
-    <h1>Users</h1>
-    <!-- Add content for your users page here -->
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+    <!-- Users Page Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0">Users</h6>
+                <a href="{% url 'user-add' %}" class="btn btn-primary">Add New User</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">ID</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Date Joined</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.date_joined }}</td>
+                            <td>
+                                <a href="{% url 'user-detail' user.id %}" class="btn btn-sm btn-primary">View</a>
+                                <a href="{% url 'user-edit' user.id %}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{% url 'user-delete' user.id %}" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Users Page End -->
+{% endblock %}

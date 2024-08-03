@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container mt-4">
+        <h2>User Details</h2>
+        <p>ID: {{ user.id }}</p>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Date Joined: {{ user.date_joined }}</p>
+        <a href="{% url 'user-edit' user.id %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'user-delete' user.id %}" class="btn btn-danger">Delete</a>
+    </div>
+{% endblock %}
