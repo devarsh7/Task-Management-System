@@ -51,3 +51,56 @@ Ensure you have the following installed on your system:
 7. ### Access the application
 - Click on 'http://127.0.0.1:8000' to navigate to browser
 
+## Docker Setup
+
+  ### Build Docker
+  
+- docker-compose build
+
+### Run the docker containers
+
+- docker-compose up
+
+## REST API Endpoints
+ ### To perform operations on Tasks
+ 
+1. ### To Create a new task
+  
+- POST /api/tasks/
+  
+2. ### To Retrieve all tasks
+
+- GET /api/tasks/
+  
+3. ### To Retrieve a task by ID
+
+- GET /api/tasks/<id>/
+
+4. ### To Update a task
+
+- PUT /api/tasks/<id>/
+  
+5. ### To Delete a task
+
+- DELETE /api/tasks/<id>/
+
+ ### For registeration of users 
+
+6. ### Register a new user
+
+- POST /api/users/
+
+7. ### Login a user
+
+- POST /api/users/login/
+
+## License
+
+- This project is licensed under the MIT License. See the LICENSE file for more details.
+
+## Contact
+
+- For any issues or queries, please contact Devarsh Shah at devarsh.shahs07@gmail.com.
+
+
+
