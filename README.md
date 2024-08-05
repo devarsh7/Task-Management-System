@@ -66,33 +66,51 @@ Ensure you have the following installed on your system:
  
 1. ### To Create a new task
   
-- POST /api/tasks/
+- Endpoint: POST /api/tasks/
+- Description: Creates a new task with the provided details.
+- Request Body: A JSON object containing the task details (title, description, status, due date).
+- Response: Returns the created task object with its assigned ID.
   
 2. ### To Retrieve all tasks
 
-- GET /api/tasks/
+- Endpoint: GET /api/tasks/
+- Description: Retrieves a list of all tasks.
+- Response: Returns a JSON array of task objects, each containing task details such as ID, title, description, status, and due date.
   
 3. ### To Retrieve a task by ID
 
-- GET /api/tasks/<id>/
+- Endpoint: GET /api/tasks/<id>/
+- Description: Retrieves details of a specific task by its ID.
+- Response: Returns a JSON object with the task details.
 
 4. ### To Update a task
 
-- PUT /api/tasks/<id>/
+- Endpoint: PUT /api/tasks/<id>/
+- Description: Updates the details of an existing task by its ID.
+- Request Body: A JSON object containing the updated task details (title, description, status, due date).
+- Response: Returns the updated task object.
   
 5. ### To Delete a task
 
-- DELETE /api/tasks/<id>/
+- Endpoint: DELETE /api/tasks/<id>/
+- Description: Deletes a specific task by its ID.
+- Response: Returns a success message upon successful deletion.
 
  ### For registeration of users 
 
 6. ### Register a new user
 
-- POST /api/users/
+- Endpoint: POST /api/users/
+- Description: Registers a new user with the provided details.
+- Request Body: A JSON object containing the user details (username, email, password).
+- Response: Returns the created user object with its assigned ID.
 
 7. ### Login a user
 
-- POST /api/users/login/
+- Endpoint: POST /api/users/login/
+- Description: Authenticates a user and provides a token for accessing protected endpoints.
+- Request Body: A JSON object containing the login details (username, password).
+- Response: Returns a token upon successful authentication.
 
 ## License
 
