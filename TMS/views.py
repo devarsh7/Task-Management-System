@@ -13,18 +13,21 @@ from .models import Task
 from .forms import TaskForm
 from django.contrib import messages
 
-
+# Function to check if a user is an admin
 def is_admin(user):
     return user.is_staff
 
+# View to display the list of tasks
 @login_required
 def task_list(request):
     query = request.GET.get('q', '')
+    # For admin users, show all tasks or filter by title
     if request.user.is_staff:
         if query:
             tasks = Task.objects.filter(Q(title__icontains=query))
         else:
             tasks = Task.objects.all()
+    # For regular users, show tasks created by or assigned to them, or filter by title
     else:
         if query:
             tasks = Task.objects.filter(Q(title__icontains=query), Q(created_by=request.user) | Q(assigned_to=request.user))
@@ -33,7 +36,7 @@ def task_list(request):
 
     return render(request, 'task_list.html', {'tasks': tasks})
 
-
+# View to handle bulk actions on tasks (complete or delete)
 def bulk_task_action(request):
     if request.method == 'POST':
         action = request.POST.get('action')
@@ -48,11 +51,12 @@ def bulk_task_action(request):
         referer = request.META.get('HTTP_REFERER', 'dashboard')  # default to 'dashboard'
         return redirect(referer)
 
-
+# Custom login view to redirect to the dashboard on successful login
 class CustomLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('dashboard')
 
+# View to handle user registration
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -67,12 +71,13 @@ def register(request):
 
     return render(request, 'registration/register.html', {'form': form})
 
-
+# Detail view for displaying a specific task
 class TaskDetailView(DetailView):
     model = Task
     template_name = 'task_detail.html'
     context_object_name = 'task'
 
+# View to handle task deletion with confirmation
 class TaskDeleteView(DeleteView):
     model = Task
     template_name = 'task_confirm_delete.html'
@@ -80,10 +85,12 @@ class TaskDeleteView(DeleteView):
 
     def get_queryset(self):
         qs = super().get_queryset()
+        # Restrict queryset for non-admin users to their own tasks
         if not self.request.user.is_staff:
             qs = qs.filter(Q(created_by=self.request.user) | Q(assigned_to=self.request.user))
         return qs
 
+# View to handle task creation
 class TaskCreateView(CreateView):
     model = Task
     form_class = TaskForm
@@ -91,10 +98,11 @@ class TaskCreateView(CreateView):
     success_url = reverse_lazy('task_list')
 
     def form_valid(self, form):
+        # Set the created_by field to the current user
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-
+# View to handle task updates
 class TaskUpdateView(UpdateView):
     model = Task
     form_class = TaskForm
@@ -103,11 +111,12 @@ class TaskUpdateView(UpdateView):
 
     def get_queryset(self):
         qs = super().get_queryset()
+        # Restrict queryset for non-admin users to their own tasks
         if not self.request.user.is_staff:
             qs = qs.filter(Q(created_by=self.request.user) | Q(assigned_to=self.request.user))
         return qs
 
-
+# View to display the dashboard with various task statistics
 @login_required
 def dashboard(request):
     if request.user.is_staff:
@@ -138,10 +147,12 @@ def dashboard(request):
     }
     return render(request, 'dashboard.html', context)
 
+# View to display the list of users
 def users(request):
     users_list = User.objects.all()
     return render(request, 'users.html', {'users': users_list})
 
+# View to handle user creation, restricted to admin users
 class UserCreateView(UserPassesTestMixin, CreateView):
     model = User
     form_class = UserCreationForm
@@ -151,7 +162,8 @@ class UserCreateView(UserPassesTestMixin, CreateView):
     def test_func(self):
         return self.request.user.is_staff
 
-class UserUpdateView(UserPassesTestMixin,UpdateView):
+# View to handle user updates, restricted to admin users
+class UserUpdateView(UserPassesTestMixin, UpdateView):
     model = User
     fields = ['username', 'email']
     template_name = 'user_form.html'
@@ -160,7 +172,8 @@ class UserUpdateView(UserPassesTestMixin,UpdateView):
     def test_func(self):
         return self.request.user.is_staff
 
-class UserDeleteView(UserPassesTestMixin,DeleteView):
+# View to handle user deletion, restricted to admin users
+class UserDeleteView(UserPassesTestMixin, DeleteView):
     model = User
     template_name = 'user_confirm_delete.html'
     success_url = reverse_lazy('users')
@@ -168,6 +181,7 @@ class UserDeleteView(UserPassesTestMixin,DeleteView):
     def test_func(self):
         return self.request.user.is_staff
 
+# Detail view for displaying a specific user's details
 class UserDetailView(DetailView):
     model = User
     template_name = 'user_detail.html'
