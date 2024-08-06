@@ -14,7 +14,7 @@
             <p><strong>Description:</strong> {{ task.description }}</p>
             <a href="{% url 'task-update' task.id %}" class="btn btn-warning">Edit</a>
             <a href="{% url 'task-delete' task.id %}" class="btn btn-danger">Delete</a>
-            <a href="{% url 'tasks' %}" class="btn btn-secondary">Back to Task List</a>
+            <a href="{% url 'task_list' %}" class="btn btn-secondary">Back to Task List</a>
         </div>
     </div>
 </div>
