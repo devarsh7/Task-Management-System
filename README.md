@@ -56,7 +56,7 @@ Ensure you have the following installed on your system:
 7. ### Access the application
 - Click on 'http://127.0.0.1:8000' to navigate to browser
 
-## Docker Setup
+## Deploy application using Docker
 
   ### Build Docker
   
@@ -71,51 +71,49 @@ Ensure you have the following installed on your system:
  
 1. ### To Create a new task
   
-- Endpoint: POST /api/tasks/
+- Endpoint: http://127.0.0.1:8000/api/tasks/?Content-Type=application/json
 - Description: Creates a new task with the provided details.
 - Request Body: A JSON object containing the task details (title, description, status, due date).
 - Response: Returns the created task object with its assigned ID.
+
+![image](https://github.com/user-attachments/assets/7e1144d1-9d2e-4f4f-a81e-2e84c8f2b7fa)
+
   
 2. ### To Retrieve all tasks
 
-- Endpoint: GET /api/tasks/
+- Endpoint: http://127.0.0.1:8000/api/tasks/
 - Description: Retrieves a list of all tasks.
 - Response: Returns a JSON array of task objects, each containing task details such as ID, title, description, status, and due date.
   
+![image](https://github.com/user-attachments/assets/124f2ddd-d3a6-4811-bf2a-fad70b5485c3)
+
+  
 3. ### To Retrieve a task by ID
 
-- Endpoint: GET /api/tasks/<id>/
+- Endpoint: http://127.0.0.1:8000/api/tasks/18/
 - Description: Retrieves details of a specific task by its ID.
 - Response: Returns a JSON object with the task details.
 
+![image](https://github.com/user-attachments/assets/9388ac92-b757-4880-b00c-dd258e3df18e)
+
+
 4. ### To Update a task
 
-- Endpoint: PUT /api/tasks/<id>/
+- Endpoint: http://127.0.0.1:8000/api/tasks/18/
 - Description: Updates the details of an existing task by its ID.
 - Request Body: A JSON object containing the updated task details (title, description, status, due date).
 - Response: Returns the updated task object.
   
+![image](https://github.com/user-attachments/assets/d7a46713-ac40-4df9-8788-9622ff0894eb)
+
+  
 5. ### To Delete a task
 
-- Endpoint: DELETE /api/tasks/<id>/
+- Endpoint: http://127.0.0.1:8000/api/tasks/18/
 - Description: Deletes a specific task by its ID.
 - Response: Returns a success message upon successful deletion.
-
- ### For registeration of users 
-
-6. ### Register a new user
-
-- Endpoint: POST /api/users/
-- Description: Registers a new user with the provided details.
-- Request Body: A JSON object containing the user details (username, email, password).
-- Response: Returns the created user object with its assigned ID.
-
-7. ### Login a user
-
-- Endpoint: POST /api/users/login/
-- Description: Authenticates a user and provides a token for accessing protected endpoints.
-- Request Body: A JSON object containing the login details (username, password).
-- Response: Returns a token upon successful authentication.
+  
+![image](https://github.com/user-attachments/assets/cdb66055-938a-4534-a084-baed743a106c)
 
 ## License
 
