@@ -45,10 +45,14 @@ Ensure you have the following installed on your system:
 - pip install -r requirements.txt
 
 4. ### Database Migrations
+- python manage.py makemigrations
+- python manage.py sqlmigrate
 - python manage.py migrate
 
-5. ### Create a Superuser
-- python manage.py createsuperuser
+5. ### Create a Superuser (Here I have already created one)
+- Username: devarsh
+- Password: admin123
+- python manage.py createsuperuser (no need for this as I have created already)
 
 6. ### Run the development server
 - python manage.py runserver
