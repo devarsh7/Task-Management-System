@@ -3,6 +3,11 @@
 ## Overview
 This is a simple Task Management System which is a web application designed to streamline task management processes. It is developed in Python using Django framework and uses SQLite database, which provides users with a robust platform to create, update, and manage tasks efficiently. The system includes REST API endpoints for seamless integration, a user-friendly dashboard and user authentication.
 
+## Dashboard
+Here is a screenshot of the dashboard that I have designed for the user.
+
+![image](https://github.com/user-attachments/assets/3cf7b654-392e-438f-9fea-190f59e2dbad)
+
 ## Features
 - **User Authentication**: Secure authentication system with registration and login functionality.
 - **Dashboard**: Dashboard displaying tasks with their statuses, deadlines, users and logout option.
