@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "TMS.apps.TmsConfig",
-    "rest_framework",
+    "rest_framework"
 ]
 
 MIDDLEWARE = [
@@ -132,7 +132,13 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = '/accounts/login/'
+# LOGIN_URL = '/accounts/login/'
+# LOGIN_REDIRECT_URL = '/'
+# LOGOUT_URL = '/accounts/login/'
+# LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 

@@ -27,8 +27,10 @@
                             <td>{{ user.date_joined }}</td>
                             <td>
                                 <a href="{% url 'user-detail' user.id %}" class="btn btn-sm btn-primary">View</a>
-                                <a href="{% url 'user-edit' user.id %}" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="{% url 'user-delete' user.id %}" class="btn btn-sm btn-danger">Delete</a>
+                                {% if request.user.is_superuser %}
+                                    <a href="{% url 'user-edit' user.id %}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="{% url 'user-delete' user.id %}" class="btn btn-sm btn-danger">Delete</a>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}
