@@ -133,6 +133,8 @@ Here are the steps to check JWT authentication using Postman :
              **password:** your_password
        - Click "Send".
        - Copy the "access" token from the response.
+
+         ![image](https://github.com/user-attachments/assets/8141834f-c8c8-47b5-b563-d137818ac827)
      
   2. ### Access the protected endpoints using the Access Token
        - Create a new request in Postman.
@@ -143,6 +145,8 @@ Here are the steps to check JWT authentication using Postman :
        - Paste the JWT access token into the "**Token**" field.
        - Click "Send" to make the request.
        - Output/Response: List of tasks in the response.
+    
+         ![image](https://github.com/user-attachments/assets/182d0e85-58c8-4110-9fbf-f61c5acdc6e6)
 
   3. ### Refresh the Token
        - Create a new request in Postman.
@@ -153,11 +157,13 @@ Here are the steps to check JWT authentication using Postman :
        - Add the following key-value pair:
            **refresh:** the refresh_token (replace the refresh_token with the refresh token we obtained in Step 1)
        - Click "Send".
-       - We will receive a new access token in the response.                  
-
+       - We will receive a new access token in the response.
+    
+         ![image](https://github.com/user-attachments/assets/a32180d6-1043-4ad7-8398-d798515a4458)
+               
 ## License
 
-- This project is licensed under the MIT License. See the LICENSE file for more details.
+- This project is licensed under the MIT License.
 
 ## Contact
 
