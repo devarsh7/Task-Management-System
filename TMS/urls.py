@@ -8,6 +8,10 @@ from .views import (
     task_list, UserCreateView, UserUpdateView, UserDeleteView,
     UserDetailView, CustomLoginView
 )
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 # Setting up the router for the API endpoints
 router = DefaultRouter()
@@ -31,6 +35,10 @@ urlpatterns = [
     path('tasks/bulk-action/', views.bulk_task_action, name='bulk_task_action'),
     path('tasks/', task_list, name='task_list'),
 
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/tasks/', TaskViewSet.as_view({'get': 'list', 'post': 'create'}), name='task-list-create'),
+    path('api/tasks/<int:pk>/', TaskViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='task-detail'),
     # Task CRUD views
     path('tasks/new/', TaskCreateView.as_view(), name='task-create'),
     path('tasks/<int:pk>/edit/', TaskUpdateView.as_view(), name='task-update'),
