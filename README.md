@@ -119,9 +119,51 @@ Ensure you have the following installed on your system:
   
 ![image](https://github.com/user-attachments/assets/cdb66055-938a-4534-a084-baed743a106c)
 
+## JWT Authentication for API endpoints using Postman 
+Here are the steps to check JWT authentication using Postman :
+  1. ### Obtain a JWT Token
+       - Open Postman.
+       - Create a new request.
+       - Set the request type to **POST**.
+       - Enter the URL: http://127.0.0.1:8000/api/token/.
+       - Navigate to the "**Body**" tab.
+       - Select "**x-www-form-urlencoded**".
+       - Add the following key-value pairs:
+             **username:** your_username
+             **password:** your_password
+       - Click "Send".
+       - Copy the "access" token from the response.
+    
+         ![image](https://github.com/user-attachments/assets/8141834f-c8c8-47b5-b563-d137818ac827)
+
+  2. ### Access the protected endpoints using the Access Token
+       - Create a new request in Postman.
+       - Set the request type to **GET**.
+       - Enter the URL: http://127.0.0.1:8000/api/tasks/.
+       - Navigate to the "**Authorization**" tab.
+       - Select **Bearer Token** from the "**Type**" dropdown.
+       - Paste the JWT access token into the "**Token**" field.
+       - Click "Send" to make the request.
+       - Output/Response: List of tasks in the response.
+    
+         ![image](https://github.com/user-attachments/assets/182d0e85-58c8-4110-9fbf-f61c5acdc6e6)
+
+  3. ### Refresh the Token
+       - Create a new request in Postman.
+       - Set the request type to **POST**.
+       - Enter the URL: http://127.0.0.1:8000/api/token/refresh/.
+       - Navigate to the "**Body**" tab.
+       - Select "**x-www-form-urlencoded**".
+       - Add the following key-value pair:
+           **refresh:** the refresh_token (replace the refresh_token with the refresh token we obtained in Step 1)
+       - Click "Send".
+       - We will receive a new access token in the response.
+    
+         ![image](https://github.com/user-attachments/assets/a32180d6-1043-4ad7-8398-d798515a4458)
+
 ## License
 
-- This project is licensed under the MIT License. See the LICENSE file for more details.
+- This project is licensed under the MIT License.
 
 ## Contact
 
